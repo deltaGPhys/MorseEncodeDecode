@@ -9,16 +9,31 @@ import org.junit.runner.RunWith;
 public class EncoderTest {
 
     Encoder basicEncoder;
+    Encoder doubleEncoder;
     Encoder tripleEncoder;
+    Encoder quintEncoder;
+    Encoder optionsEncoder;
+    Encoder manualEncoder;
 
     @Before
     public void before() {
         basicEncoder = new Encoder(1);
+        doubleEncoder = new Encoder(2);
         tripleEncoder = new Encoder(3);
+        quintEncoder = new Encoder(5);
+        optionsEncoder = new Encoder(1,"T","S",0.0,"Z",7,3);
+        manualEncoder = new Encoder(3,"Q","O",0.0,"Z",5,8);
     }
 
     @After
     public void tearDown() throws Exception {
+    }
+
+    @Test
+    public void manual() {
+        String input = "KOALAS ARE NOT BEARS";
+        System.out.println(manualEncoder.encode(input) + ", " + input);
+
     }
 
     @Test
@@ -37,6 +52,12 @@ public class EncoderTest {
         boolean actual = Encoder.checkStringFormat(phrase);
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void badPhraseEncode() {
+        String phrase = "AbsdDs DS.FA0927451 kjashd";
+        basicEncoder.encode(phrase);
     }
 
     @Test
@@ -110,5 +131,15 @@ public class EncoderTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void optionsEncodeTwoWords() {
+        String phrase = "CAT HAT";
+        String expected = "SSSSSSSTTTSTSTTTSTSSSTSTTTSSSTTTSSSSSSSTSTSTSTSSSTSTTTSSSTTTSSSSSS";
+        String actual = optionsEncoder.encode(phrase);
+
+        Assert.assertEquals(expected, actual);
+    }
+
 
 }

@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +25,7 @@ public class Encoder {
         this.silenceChar = "O";
         this.soundChar = "X";
         this.noiseProb = 0;
-        this.noiseChar = "z";
+        this.noiseChar = "Z";
         this.prefixLength = 0;
         this.suffixLength = 0;
     }
@@ -59,13 +57,13 @@ public class Encoder {
         for (String element : code.split("")) {
             if (element.equals(".")) {
                 output += this.soundChar.repeat(DIT);
-                output += this.silenceChar.repeat(DIT);
+                output += this.silenceChar.repeat(SOUND_SPACE);
             } else if (element.equals("-")) {
                 output += this.soundChar.repeat(DAH);
-                output += this.silenceChar.repeat(DIT);
+                output += this.silenceChar.repeat(SOUND_SPACE);
             }
         }
-        output += this.silenceChar.repeat(CHAR_SPACE-1);
+        output += this.silenceChar.repeat(CHAR_SPACE-SOUND_SPACE);
 
         return output;
     }
