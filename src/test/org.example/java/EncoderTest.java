@@ -22,7 +22,7 @@ public class EncoderTest {
         tripleEncoder = new Encoder(3);
         quintEncoder = new Encoder(5);
         optionsEncoder = new Encoder(1,"T","S",0.0,"Z",7,3);
-        manualEncoder = new Encoder(3,"Q","O",0.0,"Z",5,8);
+        manualEncoder = new Encoder(1,"X","O",0.0,"Z",0,0);
     }
 
     @After
@@ -31,7 +31,7 @@ public class EncoderTest {
 
     @Test
     public void manual() {
-        String input = "KOALAS ARE NOT BEARS";
+        String input = "HI THERE";
         System.out.println(manualEncoder.encode(input) + ", " + input);
 
     }
